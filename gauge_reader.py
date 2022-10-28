@@ -303,23 +303,31 @@ if __name__ == '__main__':
     # final_angle = -42
 
     plt.figure(figsize=(2, 3))
+    
+    init_t0 = time.time()
+    net, meta = readYoloConfig('config.txt')
+    time0 = time.time()-init_t0
 
     # for idx, img_f in enumerate(['030.jpg', '070.jpg', '150.jpg', 'frame_00000_rot5.jpg', 'frame_00000_rot-5.jpg']):
-    for idx, img_f in enumerate(['150.jpg']):
+    for idx, img_f in enumerate(['150.jpg', '150.jpg', '150.jpg']):
         init_t1 = time.time()
         img = cv2.imread(img_f)
-        
-        net, meta = readYoloConfig('config.txt')
-        
+        time1 = time.time()-init_t1
+
         init_t2 = time.time()
         results = DFUNC.detect(net, meta, img, thresh=0.7)
+        time2 = time.time()-init_t2
 
+        init_t3 = time.time()
         gauge_value = findGaugeValue(results, img, min_value, max_value, min_angle_shift)
+        time3 = time.time()-init_t3
 
         plt.subplot(2, 3, idx+1)
         plt.axis('off')
         plt.title('Gauge_value: '+str(gauge_value), fontsize=12)
         plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
 
-        print('elpsed time: ', time.time() - init_t1, time.time() - init_t1)
+        print('------------------------------------------------------------------------------------')
+        print('time: ', time0, time1, time2, time3)
+        print('fps: ', 1/time0, 1/time1, 1/time2, 1/time3)
     plt.show()
