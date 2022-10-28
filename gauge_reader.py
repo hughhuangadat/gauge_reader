@@ -309,7 +309,8 @@ if __name__ == '__main__':
     time0 = time.time()-init_t0
 
     # for idx, img_f in enumerate(['030.jpg', '070.jpg', '150.jpg', 'frame_00000_rot5.jpg', 'frame_00000_rot-5.jpg']):
-    for idx, img_f in enumerate(['150.jpg', '150.jpg', '150.jpg']):
+    for idx, img_f in enumerate(['000.jpg', '030.jpg', '070.jpg', '110.jpg', '150.jpg']):
+    # for idx, img_f in enumerate(['150.jpg', '150.jpg', '150.jpg']):
         init_t1 = time.time()
         img = cv2.imread(img_f)
         time1 = time.time()-init_t1
