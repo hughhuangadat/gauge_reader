@@ -1,0 +1,3 @@
+[DARKNET]
+MODEL_DIR = model
+SHARED_LIB = libdarknet.so
